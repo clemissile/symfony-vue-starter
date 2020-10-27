@@ -13,7 +13,7 @@ or
 $ npm install
 ```
 
-Compile js and css files
+Compile JS and CSS files
 
 ```sh
 $ ./node_modules/.bin/encore dev 
@@ -24,7 +24,6 @@ Execute built in Symfony web server
 ```sh
 $ php bin/console server:run
 ```
-It will start a server accessible at http://localhost:8080
 
 or
 
@@ -32,9 +31,7 @@ or
 $ docker-compose up
 ```
 
-Server will be accessible at http://localhost:8888 and Redis caché will
-be available
-
+In each case, it will start a server accessible at http://localhost:8000
 
 ## Vue development
 
