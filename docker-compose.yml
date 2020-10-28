@@ -10,9 +10,11 @@ services:
       - 8000:80
     depends_on:
       - db
+    links:
+      - db
 
   db:
-    image: percona
+    image: percona:5.7
     container_name: project_db
     restart: always
     environment:
