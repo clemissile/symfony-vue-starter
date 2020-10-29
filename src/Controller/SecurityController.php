@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route(path="/api")
+ * @Route(path="/api/v1")
  */
 class SecurityController extends AbstractController
 {
