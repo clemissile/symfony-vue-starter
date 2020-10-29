@@ -4,11 +4,24 @@ import router from './router'
 import store from './store'
 import axios from 'axios'
 
+import Vuesax from 'vuesax'
+import 'vuesax/dist/vuesax.css'
+import 'material-icons/iconfont/material-icons.css';
+
+import 'prismjs'
+import 'prismjs/themes/prism.css'
+import VsPrism from './components/prism/VsPrism.vue';
+
+Vue.component(VsPrism.name, VsPrism);
+
+Vue.use(Vuesax)
+
 Vue.config.productionTip = false
 
-require('./assets/scss/app.scss')
-
 Vue.prototype.$http = axios
+
+// SCSS styles
+require('./assets/scss/style.scss')
 
 new Vue({
     router,
