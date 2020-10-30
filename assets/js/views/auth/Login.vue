@@ -12,21 +12,21 @@
                             icon="email"
                             class="mt-3 w-100"
                             label-placeholder="Adresse email"
-                            v-model="email"
+                            v-model="credentials.email"
                         />
                         <vs-input
                             icon-no-border
                             icon="lock"
                             class="mt-3 w-100"
                             label-placeholder="Mot de passe"
-                            v-model="password"
+                            v-model="credentials.password"
                         />
                         
                         <div class="w-100 text-right mt-1">
                             Mot de passe oublié ?
                         </div>
                         <div class="w-100 d-flex justify-content-center align-content-center">
-                            <vs-button class="my-3" type="gradient">Se connecter</vs-button>
+                            <vs-button class="my-3" type="gradient" @click="login()">Se connecter</vs-button>
                         </div>
                     </div>
                 </vs-card>
@@ -38,13 +38,31 @@
 </template>
 
 <script>
+    import { mapActions } from "vuex";
+
     export default {
         name: "Login",
 
         data() {
             return {
-                email: "",
-                password: ""
+                credentials: {
+                    email: "",
+                    password: ""
+                }
+            }
+        },
+
+        methods: {
+            ...mapActions({
+                attemptLogin: "auth/login"
+            }),
+
+            login() {
+                this.attemptLogin(this.credentials)
+                    .then(() => {
+                        this.$router.push({ name: "dashboard" });
+                    })
+                    .catch(err => (this.errors = err.response.data));
             }
         }
     }

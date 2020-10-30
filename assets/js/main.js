@@ -2,7 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-import axios from 'axios'
+import httpClient from "./plugins/http";
 
 import Vuesax from 'vuesax'
 import 'vuesax/dist/vuesax.css'
@@ -18,7 +18,7 @@ Vue.use(Vuesax)
 
 Vue.config.productionTip = false
 
-Vue.prototype.$http = axios
+Vue.use(httpClient, { store, router });
 
 // SCSS styles
 require('./assets/scss/style.scss')

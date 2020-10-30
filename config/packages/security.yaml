@@ -17,11 +17,11 @@ security:
             security: false
 
         login:
-            pattern:  ^/api/v1/login
+            pattern:  ^/api/v1/auth/login
             stateless: true
             anonymous: true
             json_login:
-                check_path:               /api/v1/login_check
+                check_path:               /api/v1/auth/login
                 success_handler:          lexik_jwt_authentication.handler.authentication_success
                 failure_handler:          lexik_jwt_authentication.handler.authentication_failure
                 username_path: email
@@ -39,5 +39,5 @@ security:
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
-        - { path: ^/api/v1/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/v1/auth/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/api/v1,       roles: IS_AUTHENTICATED_FULLY }
