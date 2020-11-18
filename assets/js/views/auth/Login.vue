@@ -1,37 +1,62 @@
 <template>
     <div class="login">
-        <vs-row vs-justify="center" class="vh-100">
-            <vs-col class="d-flex p-0" vs-justify="center" vs-align="center" vs-lg="6" vs-sm="6" vs-xs="12">
+        <vs-row justify="center" align="center" class="vh-100">
+            <vs-col class="d-flex p-0" justify="center" lg="6" sm="6" xs="12">
                 <vs-card class="w-50">
-                    <div slot="header">
-                        <h3>Connexion</h3>
-                    </div>
-                    <div>
+                    <template #title>
+                        <h3 class="text-center">Connexion</h3>
+                    </template>
+                    <template #text>
                         <vs-input
-                            icon-no-border
-                            icon="email"
-                            class="mt-3 w-100"
+                            class="mt-5 w-100"
+                            border
                             label-placeholder="Adresse email"
-                            v-model="credentials.email"
-                        />
-                        <vs-input
-                            icon-no-border
-                            icon="lock"
-                            class="mt-3 w-100"
-                            label-placeholder="Mot de passe"
-                            v-model="credentials.password"
-                        />
+                            v-model="$v.credentials.email.$model"
+                            :danger="submitStatus === 'ERROR' && $v.credentials.email.$error"
+                        >
+                            <template #icon>
+                                <i class='bx bx-envelope'></i>
+                            </template>
+                            <template #message-danger v-if="submitStatus === 'ERROR'">
+                                <span v-if="!$v.credentials.email.required">L'adresse email est requise.</span>
+                                <span v-if="!$v.credentials.email.email">L'adresse email doit être valide.</span>
+                            </template>
+                        </vs-input>
+                        <div class="form-password">
+                            <vs-input
+                                class="mt-5 w-100"
+                                border
+                                label-placeholder="Mot de passe"
+                                v-model="$v.credentials.password.$model"
+                                :danger="$v.credentials.password.$error"
+                                :type="showPassword ? 'text' : 'password'"
+                                @keyup.enter.native="login()"
+                            >
+                                <template #icon>
+                                    <i class="bx bx-lock-alt"></i>
+                                </template>
+                                <template #message-danger v-if="submitStatus === 'ERROR'">
+                                    <span v-if="!$v.credentials.password.required">Le mot de passe est requis.</span>
+                                </template>
+                            </vs-input>
+                            <i :class="showPassword ? 'far fa-eye' : 'far fa-eye-slash'" @click="showPassword = !showPassword"></i>
+                        </div>
                         
                         <div class="w-100 text-right mt-1">
                             Mot de passe oublié ?
                         </div>
                         <div class="w-100 d-flex justify-content-center align-content-center">
-                            <vs-button class="my-3" type="gradient" @click="login()">Se connecter</vs-button>
+                            <vs-button
+                                :loading="submitStatus === 'PENDING'"
+                                class="my-3"
+                                type="gradient"
+                                @click="login()"
+                            >Se connecter</vs-button>
                         </div>
-                    </div>
+                    </template>
                 </vs-card>
             </vs-col>
-            <vs-col class="d-flex p-0 bg-auth" vs-justify="center" vs-align="center" vs-lg="6" vs-sm="6" vs-xs="12">
+            <vs-col class="d-flex p-0 bg-auth h-100" justify="center" lg="6" sm="6" xs="12">
             </vs-col>
         </vs-row>
     </div>
@@ -39,6 +64,7 @@
 
 <script>
     import { mapActions } from "vuex";
+    import { required, email } from 'vuelidate/lib/validators';
 
     export default {
         name: "Login",
@@ -48,6 +74,19 @@
                 credentials: {
                     email: "",
                     password: ""
+                },
+                showPassword: false,
+                submitStatus: null
+            }
+        },
+
+        validations: {
+            credentials: {
+                email: {
+                    required, email
+                },
+                password: {
+                    required
                 }
             }
         },
@@ -58,17 +97,41 @@
             }),
 
             login() {
-                this.attemptLogin(this.credentials)
-                    .then(() => {
-                        this.$router.push({ name: "dashboard" });
-                    })
-                    .catch(err => (this.errors = err.response.data));
+                this.$v.$touch()
+                if (this.$v.$invalid) {
+                    this.submitStatus = 'ERROR';
+                } else {
+                    this.submitStatus = 'PENDING'
+                    this.attemptLogin(this.credentials)
+                        .then(() => {
+                            this.submitStatus = 'OK'
+                            this.$router.push({ name: "dashboard" });
+                        })
+                        .catch(err => {
+                            this.errors = err.response.data
+                        });
+                }
             }
         }
     }
 </script>
 
 <style lang="scss" scoped>
+    ::v-deep .vs-input {
+        width: 100%;
+    }
+
+    .form-password {
+        position: relative;
+
+        .far {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+    }
+
     .bg-auth {
         background-size: cover;
         background-image: url('../../assets/images/background/auth-bg.jpg');

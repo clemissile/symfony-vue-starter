@@ -23,7 +23,7 @@ const routes = [
 		children: [
 			{
 				path: '/dashboard',
-				name: 'Dashboard',
+				name: 'dashboard',
 				component: () => import('../views/Home.vue')
 			}
 		],
