@@ -13,6 +13,14 @@ or
 $ npm install
 ```
 
+Migrate database and fixtures
+
+```sh
+$ php bin/console make:migration
+$ php bin/console doctrine:migrations:migrate 
+$ php bin/console doctrine:fixtures:load
+```
+
 Compile JS and CSS files
 
 ```sh
@@ -52,3 +60,12 @@ SassLoader is activated, so all changes on /assets/js/app.scss will be compiled 
 Axios are prototyped as $http. This service will be available at the whole Vue app.
 
 Vuex and Vue-router are included too. Be free to add as routes and stores as you want.
+
+## Test account
+
+Thanks to fixtures, a test account can be create :
+
+```sh
+admin@exemple.com
+1234
+```
