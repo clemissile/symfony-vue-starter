@@ -1,67 +1,50 @@
 <template>
     <div class="login">
-        <vs-row justify="center" align="center" class="vh-100">
-            <vs-col class="d-flex p-0" justify="center" lg="6" sm="6" xs="12">
-                <vs-card class="w-50">
-                    <template #title>
-                        <h3 class="text-center">Connexion</h3>
-                    </template>
-                    <template #text>
-                        <vs-input
-                            class="mt-5 w-100"
-                            border
-                            label-placeholder="Adresse email"
-                            v-model="$v.credentials.email.$model"
-                            :danger="submitStatus === 'ERROR' && $v.credentials.email.$error"
-                        >
-                            <template #icon>
-                                <i class='bx bx-envelope'></i>
-                            </template>
-                            <template #message-danger v-if="submitStatus === 'ERROR'">
-                                <span v-if="!$v.credentials.email.required">L'adresse email est requise.</span>
-                                <span v-if="!$v.credentials.email.email">L'adresse email doit être valide.</span>
-                            </template>
-                        </vs-input>
-                        <div class="form-password">
-                            <vs-input
-                                class="mt-5 w-100"
-                                border
-                                label-placeholder="Mot de passe"
+        <div class="row justify-content-center align-items-center w-100" style="height: 100vh;">
+            <div class="col-md-6">
+                <card class="w-50 mx-auto">
+                    <h5 slot="header" class="title">Connexion</h5>
+                    <div class="row">
+                        <div class="col">
+                            <base-input
+                                placeholder="Adresse e-mail"
+                                v-model="$v.credentials.email.$model"
+                                addonLeftIcon="tim-icons icon-badge"
+                            ></base-input>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col form-password">
+                            <base-input
+                                placeholder="Mot de passe"
                                 v-model="$v.credentials.password.$model"
-                                :danger="$v.credentials.password.$error"
                                 :type="showPassword ? 'text' : 'password'"
                                 @keyup.enter.native="login()"
-                            >
-                                <template #icon>
-                                    <i class="bx bx-lock-alt"></i>
-                                </template>
-                                <template #message-danger v-if="submitStatus === 'ERROR'">
-                                    <span v-if="!$v.credentials.password.required">Le mot de passe est requis.</span>
-                                </template>
-                            </vs-input>
+                                addonLeftIcon="tim-icons icon-key-25"
+                            ></base-input>
                             <i :class="showPassword ? 'far fa-eye' : 'far fa-eye-slash'" @click="showPassword = !showPassword"></i>
                         </div>
-                        
-                        <div class="w-100 text-right mt-1">
-                            Mot de passe oublié ?
-                        </div>
-                        <div class="w-100 danger mt-1" v-if="errors">
-                            {{ errors.message }}
-                        </div>
-                        <div class="w-100 d-flex justify-content-center align-content-center">
-                            <vs-button
-                                :loading="submitStatus === 'PENDING'"
-                                class="my-3"
-                                type="gradient"
-                                @click="login()"
-                            >Se connecter</vs-button>
-                        </div>
-                    </template>
-                </vs-card>
-            </vs-col>
-            <vs-col class="d-flex p-0 bg-auth h-100" justify="center" lg="6" sm="6" xs="12">
-            </vs-col>
-        </vs-row>
+                    </div>
+
+                    <div class="w-100 text-right mt-1">
+                        Mot de passe oublié ?
+                    </div>
+                    <div class="w-100 danger mt-1" v-if="errors">
+                        {{ errors.message }}
+                    </div>
+
+                    <base-button
+                        slot="footer"
+                        type="primary"
+                        fill
+                        :loading="submitStatus === 'PENDING'"
+                        @click="login()"
+                    >Se connecter</base-button>
+                </card>
+            </div>
+            <div class="col-md-6 bg-auth h-100">
+            </div>
+        </div>
     </div>
 </template>
 
@@ -131,9 +114,11 @@
 
         .far {
             position: absolute;
-            right: 0;
+            right: 30px;
             top: 50%;
-            transform: translateY(-50%);
+            transform: translateY(-80%);
+            z-index: 10;
+            cursor: pointer;
         }
     }
 

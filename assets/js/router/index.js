@@ -1,47 +1,18 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
+import VueRouter from "vue-router";
+import routes from "./routes";
 
-Vue.use(VueRouter)
-
-const routes = [
-	{
-		path: '/',
-		name: 'Login',
-		component: () => import('../views/auth/Login.vue')
-	},
-
-	{
-		// ======================
-		// Full Layout
-		// ======================
-		path: '',
-		component: () => import('../components/layout/MainContainer.vue'),
-
-		// ======================
-		// Main routes / pages
-		// ======================
-		children: [
-			{
-				path: '/dashboard',
-				name: 'dashboard',
-				component: () => import('../views/Home.vue')
-			}
-		],
-	},
-
-	// Redirect to home page, if no match found
-	{
-		path: '*',
-		redirect: '/'
-	}
-]
-
+// configure router
 const router = new VueRouter({
 	mode: 'history',
-	routes,
-	scrollBehavior (to, from, savedPosition) {
-		return { x: 0, y: 0 }
-	}  
+	routes, // short for routes: routes
+	linkExactActiveClass: "active",
+	scrollBehavior: (to) => {
+		if (to.hash) {
+			return { selector: to.hash }
+		} else {
+			return { x: 0, y: 0 }
+		}
+	}
 })
 
-export default router
+export default router;
