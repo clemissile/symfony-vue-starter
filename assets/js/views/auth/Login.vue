@@ -45,6 +45,9 @@
                         <div class="w-100 text-right mt-1">
                             Mot de passe oublié ?
                         </div>
+                        <div class="w-100 danger mt-1" v-if="errors">
+                            {{ errors.message }}
+                        </div>
                         <div class="w-100 d-flex justify-content-center align-content-center">
                             <vs-button
                                 :loading="submitStatus === 'PENDING'"
@@ -76,7 +79,8 @@
                     password: ""
                 },
                 showPassword: false,
-                submitStatus: null
+                submitStatus: null,
+                errors: null
             }
         },
 
@@ -108,6 +112,7 @@
                             this.$router.push({ name: "dashboard" });
                         })
                         .catch(err => {
+                            this.submitStatus = 'ERROR';
                             this.errors = err.response.data
                         });
                 }
