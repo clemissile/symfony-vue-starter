@@ -37,10 +37,8 @@ export default {
         },
 
         logout({ commit }) {
-            return http.post("/auth/logout").then(res => {
-                setTokenHeader(null);
-                commit('LOGOUT_USER', res.data.data);
-            });
+            setTokenHeader(null);
+            commit('LOGOUT_USER');
         },
 
         setAuthenticatedUser({ commit }, user) {
