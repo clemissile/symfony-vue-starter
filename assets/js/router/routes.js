@@ -14,7 +14,7 @@ const TableList = () => import(/* webpackChunkName: "common" */ "../pages/TableL
 const routes = [
   {
 		path: '/',
-		name: 'Login',
+		name: 'login',
 		component: () => import('../views/auth/Login.vue')
 	},
   {
