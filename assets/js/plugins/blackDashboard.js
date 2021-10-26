@@ -1,5 +1,5 @@
-import SideBar from "../components/SidebarPlugin";
-import Notify from "../components/NotificationPlugin";
+import SideBar from "./sidebar";
+import Notify from "./notifications";
 import GlobalComponents from "./globalComponents";
 import GlobalDirectives from "./globalDirectives";
 import RTLPlugin from "./RTLPlugin";
@@ -10,11 +10,11 @@ import "../assets/css/nucleo-icons.css";
 import "../assets/demo/demo.css";
 
 export default {
-  install(Vue) {
-    Vue.use(GlobalComponents);
-    Vue.use(GlobalDirectives);
-    Vue.use(SideBar);
-    Vue.use(Notify);
-    Vue.use(RTLPlugin);
-  }
+	install(Vue) {
+		Vue.use(GlobalComponents);
+		Vue.use(GlobalDirectives);
+		Vue.use(SideBar);
+		Vue.use(Notify);
+		Vue.use(RTLPlugin);
+	}
 }
