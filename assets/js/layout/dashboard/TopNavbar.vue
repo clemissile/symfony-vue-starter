@@ -80,10 +80,10 @@
 								</p>
 							</a>
 							<li class="nav-link">
-								<a href="#" class="nav-item dropdown-item">Profile</a>
+								<router-link :to="getRoute('UserProfile')" class="nav-item dropdown-item">Profile</router-link>
 							</li>
 							<li class="nav-link">
-								<a href="#" class="nav-item dropdown-item">Settings</a>
+								<router-link :to="getRoute('UserSettings')" class="nav-item dropdown-item">Settings</router-link>
 							</li>
 							<div class="dropdown-divider"></div>
 							<li class="nav-link">
@@ -104,7 +104,7 @@
 <script>
 import { CollapseTransition } from 'vue2-transitions'
 import Modal from '../../components/Modal'
-import { mapActions } from "vuex"
+import { mapActions, mapGetters } from "vuex"
 
 export default {
 	data() {
@@ -122,6 +122,10 @@ export default {
 	},
 
 	computed: {
+		...mapGetters({
+            getRoute: 'ui/getRoute'
+        }),
+
 		routeName() {
 			const { name } = this.$route
 			return this.capitalizeFirstLetter(name)

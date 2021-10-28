@@ -10,20 +10,11 @@ export default {
         refreshToken: null
     },
 
-    mutations: {
-        ['AUTHENTICATE_USER'](state, authenticatedUser) {
-            state.authenticatedUser = authenticatedUser;
-        },
-        ['LOGOUT_USER'](state) {
-            state.authenticatedUser = {};
-            state.isAuth = false;
-        },
-        ['ACCESS_TOKEN'](state, accessToken) {
-            state.accessToken = accessToken;
-        },
-        ['REFRESH_TOKEN'](state, refreshToken) {
-            state.refreshToken = refreshToken;
-        }    
+    getters: {
+        authenticatedUser: state => state.authenticatedUser,
+        isAuth: state => state.authenticatedUser && state.authenticatedUser.id,
+        accessToken: state => state.accessToken,
+        refreshToken: state => state.refreshToken
     },
 
     actions: {
@@ -54,10 +45,19 @@ export default {
         }  
     },
 
-    getters: {
-        authenticatedUser: state => state.authenticatedUser,
-        isAuth: state => state.authenticatedUser && state.authenticatedUser.id,
-        accessToken: state => state.accessToken,
-        refreshToken: state => state.refreshToken
+    mutations: {
+        ['AUTHENTICATE_USER'](state, authenticatedUser) {
+            state.authenticatedUser = authenticatedUser;
+        },
+        ['LOGOUT_USER'](state) {
+            state.authenticatedUser = {};
+            state.isAuth = false;
+        },
+        ['ACCESS_TOKEN'](state, accessToken) {
+            state.accessToken = accessToken;
+        },
+        ['REFRESH_TOKEN'](state, refreshToken) {
+            state.refreshToken = refreshToken;
+        }    
     }
 }
