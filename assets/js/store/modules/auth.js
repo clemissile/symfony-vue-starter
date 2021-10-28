@@ -21,7 +21,7 @@ export default {
         login({ commit }, credentials) {
             return new Promise((resolve, reject) => {
                 http.post("/auth/login", credentials).then(res => {
-                    commit('AUTHENTICATE_USER', res.data.data);
+                    commit('ACCESS_TOKEN', res.data.token);
                     resolve();
                 }).catch((err) => reject(err));
             });
