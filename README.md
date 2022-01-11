@@ -90,7 +90,9 @@ I wanted a skeleton with an API made with Symfony and a front with VueJs but I d
    ```sh
     $ composer install
     $ yarn install #recommended
+
     or
+    
     $ npm install
     ```
 2. Migrate database and fixtures
