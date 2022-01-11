@@ -76,8 +76,8 @@ I wanted a skeleton with an API made with Symfony and a front with VueJs but I d
 ### Prerequisites
 
 * composer 
-    [Windows Installation](https://getcomposer.org/doc/00-intro.md#installation-windows)
-    [Linux/MacOS Installation](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-macos)
+    - [Windows Installation](https://getcomposer.org/doc/00-intro.md#installation-windows)
+    - [Linux/MacOS Installation](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-macos)
 
 * npm
     ```sh
