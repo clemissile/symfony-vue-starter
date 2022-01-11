@@ -92,7 +92,7 @@ I wanted a skeleton with an API made with Symfony and a front with VueJs but I d
     $ yarn install #recommended
 
     or
-    
+
     $ npm install
     ```
 2. Migrate database and fixtures
@@ -123,9 +123,9 @@ Vue files are located at /assets/js folder. Just modify these files as a regular
 
 I suggest you using hot-reload encore server. When a file is updated webpack will be launched automatically. Start it with this command
 
-    ```sh
-    $ ./node_modules/.bin/encore dev --watch
-    ```
+```sh
+$ ./node_modules/.bin/encore dev --watch
+```
 
 Files app.js and app.css will be compiled at /public/build folder.
 
@@ -141,10 +141,10 @@ Vuex and Vue-router are included too. Be free to add as routes and stores as you
 
 Thanks to fixtures, a test account can be create :
 
-    ```sh
-    admin@exemple.com
-    1234
-    ```
+```sh
+admin@exemple.com
+1234
+```
 
 
 <!-- CONTRIBUTING -->
