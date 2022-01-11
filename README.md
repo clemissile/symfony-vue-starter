@@ -75,10 +75,14 @@ I wanted a skeleton with an API made with Symfony and a front with VueJs but I d
 
 ### Prerequisites
 
+* composer 
+    [Windows Installation](https://getcomposer.org/doc/00-intro.md#installation-windows)
+    [Linux/MacOS Installation](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-macos)
+
 * npm
-  ```sh
-  npm install npm@latest -g
-  ```
+    ```sh
+    npm install npm@latest -g
+    ```
 
 ### Installation
 
@@ -107,9 +111,9 @@ I wanted a skeleton with an API made with Symfony and a front with VueJs but I d
 or
 
 If you use Docker
-```sh
-$ docker-compose up
-```
+    ```sh
+    $ docker-compose up
+    ```
 
 ### Vue development
 
@@ -117,9 +121,9 @@ Vue files are located at /assets/js folder. Just modify these files as a regular
 
 I suggest you using hot-reload encore server. When a file is updated webpack will be launched automatically. Start it with this command
 
-```sh
-$ ./node_modules/.bin/encore dev --watch
-```
+    ```sh
+    $ ./node_modules/.bin/encore dev --watch
+    ```
 
 Files app.js and app.css will be compiled at /public/build folder.
 
@@ -135,10 +139,10 @@ Vuex and Vue-router are included too. Be free to add as routes and stores as you
 
 Thanks to fixtures, a test account can be create :
 
-```sh
-admin@exemple.com
-1234
-```
+    ```sh
+    admin@exemple.com
+    1234
+    ```
 
 
 <!-- CONTRIBUTING -->
