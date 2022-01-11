@@ -110,7 +110,7 @@ I wanted a skeleton with an API made with Symfony and a front with VueJs but I d
 
 or
 
-If you use Docker
+1. If you use Docker
     ```sh
     $ docker-compose up
     ```
