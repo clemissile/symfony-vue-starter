@@ -1,6 +1,15 @@
 {
+    "version": "1.0.0",
     "type": "project",
-    "license": "proprietary",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Clément Ganivet",
+            "email": "ganivetclement@gmail.com",
+            "homepage": "https://www.olinalab.fr/",
+            "role": "Developer"
+        }
+    ],
     "require": {
         "php": "^7.1.3",
         "ext-ctype": "*",

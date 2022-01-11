@@ -1,9 +1,25 @@
 {
-  "name": "vue-black-dashboard",
+  "name": "symfony-vue-starter",
   "version": "1.0.0",
-  "private": true,
-  "description": "A sample admin dashboard based on black dashboard UI template",
-  "author": "cristian.jora <joracristi@gmail.com>",
+  "author": {
+    "name": "Clément Ganivet",
+    "email": "ganivetclement@gmail.com",
+    "url": "https://www.olinalab.fr/"
+  },
+  "licence": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/clemissile/symfony-vue-starter"
+  },
+  "keywords": [
+    "symfony",
+    "vue",
+    "vuejs",
+    "vuex",
+    "vue-router",
+    "components",
+    "axios"
+  ],
   "scripts": {
     "serve": "vue-cli-service serve --open",
     "build": "vue-cli-service build",
